@@ -4,8 +4,13 @@ gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3'
+group :production do
+  gem 'pg' #herokuではsqlite3に対応していない
+end
+group :development, :test do
+  gem 'sqlite3'
+  gem 'sqlite3-ruby', :require => 'sqlite3' ※ これはインストールしている場合に必要
+end
 
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
